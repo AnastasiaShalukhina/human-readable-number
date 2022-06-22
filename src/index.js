@@ -80,6 +80,17 @@ module.exports = function toReadable(number) {
         }
     }
 
+    function getThreeDigitNumber(firstDigit, secondDigit, thirdDigit) {
+        let firstPart = getOneDigit(firstDigit);
+
+        if (secondDigit === "0" && thirdDigit === "0") {
+            return firstPart + " " + "hundred";
+        } else if (secondDigit !== "0" && thirdDigit !== "0") {
+            let secondPart = getTwoDigitNumber(firstDigit, secondDigit);
+            return firstPart + " " + "hundred" + " " + secondPart;
+        }
+    }
+
     let str = String(number);
 
     if (str.length === 1) {
@@ -89,6 +100,10 @@ module.exports = function toReadable(number) {
         let firstDigit = str.substring(0, 1);
         let secondDigit = str.substring(1);
         return getTwoDigitNumber(firstDigit, secondDigit);
-    } else {
+    } else if (str.length === 3) {
+        let firstDigit = str.substring(0, 1);
+        let secondDigit = str.substring(1, 2);
+        let thirdDigit = str.substring(2);
+        return getThreeDigitNumber(firstDigit, secondDigit, thirdDigit);
     }
 };
