@@ -23,76 +23,76 @@ module.exports = function toReadable(number) {
         }
     }
 
-    function getDecades(digit) {
-        if (digit === "1") {
+    function getDecades(digitD) {
+        if (digitD === "1") {
             return "ten";
-        } else if (digit === "2") {
+        } else if (digitD === "2") {
             return "twenty";
-        } else if (digit === "3") {
+        } else if (digitD === "3") {
             return "thirty";
-        } else if (digit === "4") {
+        } else if (digitD === "4") {
             return "forty";
-        } else if (digit === "5") {
+        } else if (digitD === "5") {
             return "fifty";
-        } else if (digit === "6") {
+        } else if (digitD === "6") {
             return "sixty";
-        } else if (digit === "7") {
+        } else if (digitD === "7") {
             return "seventy";
-        } else if (digit === "8") {
+        } else if (digitD === "8") {
             return "eighty";
         } else {
             return "ninety";
         }
     }
 
-    function getFrom11To19(secondDigit) {
-        if (secondDigit === "1") {
+    function getFrom11To19(digit) {
+        if (digit === "1") {
             return "eleven";
-        } else if (secondDigit === "2") {
+        } else if (digit === "2") {
             return "twelve";
-        } else if (secondDigit === "3") {
+        } else if (digit === "3") {
             return "thirteen";
-        } else if (secondDigit === "4") {
+        } else if (digit === "4") {
             return "fourteen";
-        } else if (secondDigit === "5") {
+        } else if (digit === "5") {
             return "fifteen";
-        } else if (secondDigit === "6") {
+        } else if (digit === "6") {
             return "sixteen";
-        } else if (secondDigit === "7") {
+        } else if (digit === "7") {
             return "seventeen";
-        } else if (secondDigit === "8") {
+        } else if (digit === "8") {
             return "eighteen";
         } else {
             return "nineteen";
         }
     }
 
-    function getTwoDigitNumber(firstDigit, secondDigit) {
-        if (secondDigit === "0") {
-            return getDecades(firstDigit);
-        } else if (firstDigit === "1") {
-            return getFrom11To19(secondDigit);
+    function getTwoDigitNumber(first, second) {
+        if (second === "0") {
+            return getDecades(first);
+        } else if (first === "1") {
+            return getFrom11To19(second);
         } else {
-            let firstPart = getDecades(firstDigit);
-            let secondPart = getOneDigit(secondDigit);
+            let firstPart = getDecades(first);
+            let secondPart = getOneDigit(second);
             let result = firstPart + " " + secondPart;
             return result;
         }
     }
 
-    function getThreeDigitNumber(firstDigit, secondDigit, thirdDigit) {
-        let firstPart = getOneDigit(firstDigit) + " " + "hundred";
+    function getThreeDigitNumber(firstD, secondD, thirdD) {
+        let firstPart = getOneDigit(firstD) + " " + "hundred";
 
-        if (secondDigit === "0" && thirdDigit === "0") {
+        if (secondD === "0" && thirdD === "0") {
             return firstPart;
-        } else if (secondDigit !== "0" && thirdDigit !== "0") {
-            let secondPart = getTwoDigitNumber(firstDigit, secondDigit);
+        } else if (secondD !== "0" && thirdD !== "0") {
+            let secondPart = getTwoDigitNumber(firstD, secondD);
             return firstPart + " " + secondPart;
-        } else if (secondDigit === "0" && thirdDigit !== "0") {
-            let secondPart = getOneDigit(thirdDigit);
+        } else if (secondD === "0" && thirdD !== "0") {
+            let secondPart = getOneDigit(thirdD);
             return firstPart + " " + secondPart;
-        } else if (secondDigit !== "0" && thirdDigit === "0") {
-            let secondPart = getDecades(secondDigit);
+        } else if (secondD !== "0" && thirdD === "0") {
+            let secondPart = getDecades(secondD);
             return firstPart + " " + secondPart;
         }
     }
