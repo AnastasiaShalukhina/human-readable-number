@@ -45,22 +45,22 @@ module.exports = function toReadable(number) {
         }
     }
 
-    function getFrom11To19(digit) {
-        if (digit === "1") {
+    function getFrom11To19(digit1) {
+        if (digit1 === "1") {
             return "eleven";
-        } else if (digit === "2") {
+        } else if (digit1 === "2") {
             return "twelve";
-        } else if (digit === "3") {
+        } else if (digit1 === "3") {
             return "thirteen";
-        } else if (digit === "4") {
+        } else if (digit1 === "4") {
             return "fourteen";
-        } else if (digit === "5") {
+        } else if (digit1 === "5") {
             return "fifteen";
-        } else if (digit === "6") {
+        } else if (digit1 === "6") {
             return "sixteen";
-        } else if (digit === "7") {
+        } else if (digit1 === "7") {
             return "seventeen";
-        } else if (digit === "8") {
+        } else if (digit1 === "8") {
             return "eighteen";
         } else {
             return "nineteen";
@@ -80,19 +80,19 @@ module.exports = function toReadable(number) {
         }
     }
 
-    function getThreeDigitNumber(firstD, secondD, thirdD) {
-        let firstPart = getOneDigit(firstD) + " " + "hundred";
+    function getThreeDigitNumber(firstDigit, secondDigit, thirdDigit) {
+        let firstPart = getOneDigit(firstDigit) + " " + "hundred";
 
-        if (secondD === "0" && thirdD === "0") {
+        if (secondDigit === "0" && thirdDigit === "0") {
             return firstPart;
-        } else if (secondD !== "0" && thirdD !== "0") {
-            let secondPart = getTwoDigitNumber(firstD, secondD);
+        } else if (secondDigit !== "0" && thirdDigit !== "0") {
+            let secondPart = getTwoDigitNumber(secondDigit, thirdDigit);
             return firstPart + " " + secondPart;
-        } else if (secondD === "0" && thirdD !== "0") {
-            let secondPart = getOneDigit(thirdD);
+        } else if (secondDigit === "0" && thirdDigit !== "0") {
+            let secondPart = getOneDigit(thirdDigit);
             return firstPart + " " + secondPart;
-        } else if (secondD !== "0" && thirdD === "0") {
-            let secondPart = getDecades(secondD);
+        } else if (secondDigit !== "0" && thirdDigit === "0") {
+            let secondPart = getDecades(secondDigit);
             return firstPart + " " + secondPart;
         }
     }
