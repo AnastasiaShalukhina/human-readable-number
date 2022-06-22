@@ -81,13 +81,19 @@ module.exports = function toReadable(number) {
     }
 
     function getThreeDigitNumber(firstDigit, secondDigit, thirdDigit) {
-        let firstPart = getOneDigit(firstDigit);
+        let firstPart = getOneDigit(firstDigit) + " " + "hundred";
 
         if (secondDigit === "0" && thirdDigit === "0") {
-            return firstPart + " " + "hundred";
+            return firstPart;
         } else if (secondDigit !== "0" && thirdDigit !== "0") {
             let secondPart = getTwoDigitNumber(firstDigit, secondDigit);
-            return firstPart + " " + "hundred" + " " + secondPart;
+            return firstPart + " " + secondPart;
+        } else if (secondDigit === "0" && thirdDigit !== "0") {
+            let secondPart = getOneDigit(thirdDigit);
+            return firstPart + " " + secondPart;
+        } else if (secondDigit !== "0" && thirdDigit === "0") {
+            let secondPart = getDecades(secondDigit);
+            return firstPart + " " + secondPart;
         }
     }
 
