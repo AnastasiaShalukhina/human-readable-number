@@ -1,22 +1,22 @@
 module.exports = function toReadable(number) {
     function getOneDigit(digit) {
-        if (num === 0) {
+        if (digit === "0") {
             return "zero";
-        } else if (digit === 1) {
+        } else if (digit === "1") {
             return "one";
-        } else if (digit === 2) {
+        } else if (digit === "2") {
             return "two";
-        } else if (digit === 3) {
+        } else if (digit === "3") {
             return "three";
-        } else if (digit === 4) {
+        } else if (digit === "4") {
             return "four";
-        } else if (digit === 5) {
+        } else if (digit === "5") {
             return "five";
-        } else if (digit === 6) {
+        } else if (digit === "6") {
             return "six";
-        } else if (digit === 7) {
+        } else if (digit === "7") {
             return "seven";
-        } else if (digit === 8) {
+        } else if (digit === "8") {
             return "eight";
         } else {
             return "nine";
@@ -24,33 +24,71 @@ module.exports = function toReadable(number) {
     }
 
     function getDecades(digit) {
-        if (digit === 1) {
+        if (digit === "1") {
             return "ten";
-        } else if (digit === 2) {
+        } else if (digit === "2") {
             return "twenty";
-        } else if (digit === 3) {
+        } else if (digit === "3") {
             return "thirty";
-        } else if (digit === 4) {
+        } else if (digit === "4") {
             return "forty";
-        } else if (digit === 5) {
+        } else if (digit === "5") {
             return "fifty";
-        } else if (digit === 6) {
+        } else if (digit === "6") {
             return "sixty";
-        } else if (digit === 7) {
+        } else if (digit === "7") {
             return "seventy";
-        } else if (digit === 8) {
+        } else if (digit === "8") {
             return "eighty";
         } else {
             return "ninety";
         }
     }
 
+    function getFrom11To19(secondDigit) {
+        if (secondDigit === "1") {
+            return "eleven";
+        } else if (secondDigit === "2") {
+            return "twelve";
+        } else if (secondDigit === "3") {
+            return "thirteen";
+        } else if (secondDigit === "4") {
+            return "fourteen";
+        } else if (secondDigit === "5") {
+            return "fifteen";
+        } else if (secondDigit === "6") {
+            return "sixteen";
+        } else if (secondDigit === "7") {
+            return "seventeen";
+        } else if (secondDigit === "8") {
+            return "eighteen";
+        } else {
+            return "nineteen";
+        }
+    }
+
+    function getTwoDigitNumber(firstDigit, secondDigit) {
+        if (secondDigit === "0") {
+            return getDecades(firstDigit);
+        } else if (firstDigit === "1") {
+            return getFrom11To19(secondDigit);
+        } else {
+            let firstPart = getDecades(firstDigit);
+            let secondPart = getOneDigit(secondDigit);
+            let result = firstPart + " " + secondPart;
+            return result;
+        }
+    }
+
     let str = String(number);
+
     if (str.length === 1) {
-        let result = getOneDigit(number);
+        let result = getOneDigit(str);
         return result;
-    } else if (str.length === 2 && str.substring(1) == "0") {
-        let decades = getDecades(str.substring(1));
-        return decades;
+    } else if (str.length === 2) {
+        let firstDigit = str.substring(0, 1);
+        let secondDigit = str.substring(1);
+        return getTwoDigitNumber(firstDigit, secondDigit);
+    } else {
     }
 };
